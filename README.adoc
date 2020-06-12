@@ -1,3 +1,3 @@
 = XYZ Reader Starter Code
 
-This repository stores the starter code for the XYZ Reader project in Udacity's Android Nanodegree.
+A mock RSS feed reader featuring banner photos and headlines. This repository uses an updated version of the starter code for the XYZ Reader project in Udacity's Android Nanodegree.

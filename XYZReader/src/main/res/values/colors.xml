@@ -17,13 +17,8 @@
 
 <resources>
     <color name="photo_placeholder">#ccc</color>
-
-    <!--<color name="theme_primary">#fb5821</color>
-    <color name="theme_primary_dark">#c01f00</color>
-    <color name="theme_accent">#04561A</color>-->
     <color name="colorPrimary">#fb5821</color>
     <color name="colorPrimaryDark">#c01f00</color>
-    <color name="colorAccent">#20FAC8</color> <!--<color name="colorAccent">#2EAB8E</color>-->
-    <!--<color name="ltgray">#ffe0e0e0</color>-->
+    <color name="colorAccent">#20FAC8</color>
     <color name="dark_gray">#6000</color>
 </resources>

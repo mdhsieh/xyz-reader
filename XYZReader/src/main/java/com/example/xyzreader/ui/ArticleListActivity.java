@@ -65,8 +65,6 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        /*final View toolbarContainerView = findViewById(R.id.toolbar_container);*/
-
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -75,9 +73,6 @@ public class ArticleListActivity extends AppCompatActivity implements
         adapter.setHasStableIds(true);
         mRecyclerView.setAdapter(adapter);
         int columnCount = getResources().getInteger(R.integer.list_column_count);
-        /*StaggeredGridLayoutManager sglm =
-          new StaggeredGridLayoutManager(columnCount, StaggeredGridLayoutManager.VERTICAL);
-          mRecyclerView.setLayoutManager(sglm);*/
         GridLayoutManager gridLayoutManager =
                 new GridLayoutManager(this, columnCount);
         mRecyclerView.setLayoutManager(gridLayoutManager);

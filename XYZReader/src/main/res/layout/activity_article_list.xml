@@ -35,12 +35,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom">
 
-        <!--<com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">-->
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -49,7 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-            <!--android:layout_gravity="bottom"-->
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -58,8 +51,6 @@
                 android:contentDescription="@string/app_name"/>
 
         </androidx.appcompat.widget.Toolbar>
-
-        <!--</com.google.android.material.appbar.CollapsingToolbarLayout>-->
 
         </com.google.android.material.appbar.AppBarLayout>
     </FrameLayout>

@@ -35,7 +35,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
-import androidx.palette.graphics.Palette;
+// import androidx.palette.graphics.Palette;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
@@ -161,14 +161,6 @@ public class ArticleDetailFragment extends Fragment implements
         bindViews();
         updateStatusBar();
 
-         // get loading indicator from ArticleDetailActivity
-//        if (getActivity() != null) {
-//            ProgressBar loadingIndicator = getActivity().findViewById(R.id.pb_detail_loading);
-//            // hide the loading indicator
-//            loadingIndicator.setVisibility(View.GONE);
-//            Log.d(TAG, "hid loading indicator");
-//        }
-
         return mRootView;
     }
 
@@ -262,11 +254,10 @@ public class ArticleDetailFragment extends Fragment implements
                                 loadingIndicator.setVisibility(View.GONE);
                             }
 
-
                             Bitmap bitmap = imageContainer.getBitmap();
                             if (bitmap != null) {
-                                Palette p = Palette.generate(bitmap, 12);
-                                //mMutedColor = p.getDarkMutedColor(0xFF333333);
+                                // Palette p = Palette.generate(bitmap, 12);
+                                // mMutedColor = p.getDarkMutedColor(0xFF333333);
                                 if (getContext() != null) {
                                     mMutedColor = ContextCompat.getColor(getContext(), R.color.colorPrimary);
                                 } else {
@@ -313,6 +304,13 @@ public class ArticleDetailFragment extends Fragment implements
             mCursor.close();
             mCursor = null;
             Toast.makeText(getContext(), R.string.article_detail_loading_error, Toast.LENGTH_LONG).show();
+
+            // get loading indicator from ArticleDetailActivity
+            if (getActivity() != null) {
+                ProgressBar loadingIndicator = getActivity().findViewById(R.id.pb_detail_loading);
+                // hide the loading indicator
+                loadingIndicator.setVisibility(View.GONE);
+            }
         }
 
         bindViews();

@@ -25,10 +25,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ShareCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
@@ -157,6 +160,15 @@ public class ArticleDetailFragment extends Fragment implements
 
         bindViews();
         updateStatusBar();
+
+         // get loading indicator from ArticleDetailActivity
+//        if (getActivity() != null) {
+//            ProgressBar loadingIndicator = getActivity().findViewById(R.id.pb_detail_loading);
+//            // hide the loading indicator
+//            loadingIndicator.setVisibility(View.GONE);
+//            Log.d(TAG, "hid loading indicator");
+//        }
+
         return mRootView;
     }
 
@@ -242,10 +254,24 @@ public class ArticleDetailFragment extends Fragment implements
                     .get(mCursor.getString(ArticleLoader.Query.PHOTO_URL), new ImageLoader.ImageListener() {
                         @Override
                         public void onResponse(ImageLoader.ImageContainer imageContainer, boolean b) {
+
+                            // get loading indicator from ArticleDetailActivity
+                            if (getActivity() != null) {
+                                ProgressBar loadingIndicator = getActivity().findViewById(R.id.pb_detail_loading);
+                                // hide the loading indicator
+                                loadingIndicator.setVisibility(View.GONE);
+                            }
+
+
                             Bitmap bitmap = imageContainer.getBitmap();
                             if (bitmap != null) {
                                 Palette p = Palette.generate(bitmap, 12);
-                                mMutedColor = p.getLightMutedColor(0xFF333333);
+                                //mMutedColor = p.getDarkMutedColor(0xFF333333);
+                                if (getContext() != null) {
+                                    mMutedColor = ContextCompat.getColor(getContext(), R.color.colorPrimary);
+                                } else {
+                                    Log.e(TAG, "context is null");
+                                }
                                 mPhotoView.setImageBitmap(imageContainer.getBitmap());
                                 mRootView.findViewById(R.id.meta_bar)
                                         .setBackgroundColor(mMutedColor);
@@ -286,6 +312,7 @@ public class ArticleDetailFragment extends Fragment implements
             Log.e(TAG, "Error reading item detail cursor");
             mCursor.close();
             mCursor = null;
+            Toast.makeText(getContext(), R.string.article_detail_loading_error, Toast.LENGTH_LONG).show();
         }
 
         bindViews();

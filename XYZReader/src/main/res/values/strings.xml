@@ -8,5 +8,6 @@
     <string name="action_share">Share</string>
 
     <string name="up">Up</string>
+    <string name="article_detail_loading_error">An error occurred! Please press back and re-open the article.</string>
 
 </resources>

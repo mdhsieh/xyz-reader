@@ -6,18 +6,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.DiffUtil;
@@ -58,6 +61,9 @@ public class ArticleListActivity extends AppCompatActivity implements
 
     private Adapter adapter;
 
+    // loading indicator to let user know article list is loading
+    private ProgressBar loadingIndicator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +84,14 @@ public class ArticleListActivity extends AppCompatActivity implements
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
         LoaderManager.getInstance(this).initLoader(0, null, this);
+
+        loadingIndicator = findViewById(R.id.pb_loading);
+
+        // show the loading indicator
+        loadingIndicator.setVisibility(View.VISIBLE);
+
+        //make loading indicator primary color
+        //DrawableCompat.setTint(loadingIndicator.getIndeterminateDrawable(), getResources().getColor(R.color.colorPrimary));
 
         if (savedInstanceState == null) {
             refresh();
@@ -195,6 +209,9 @@ public class ArticleListActivity extends AppCompatActivity implements
                     mCursor.getString(ArticleLoader.Query.THUMB_URL),
                     ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
             holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
+
+            // hide the loading indicator
+            loadingIndicator.setVisibility(View.GONE);
         }
 
         void updateList(Cursor newCursor) {

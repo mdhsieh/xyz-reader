@@ -22,4 +22,10 @@
             android:contentDescription="@string/up"
             android:src="@drawable/ic_arrow_back" />
     </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/pb_detail_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
 </FrameLayout>

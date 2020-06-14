@@ -5,10 +5,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,8 @@ import com.example.xyzreader.data.ItemsContract;
 public class ArticleDetailActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
+    private static final String TAG = ArticleDetailActivity.class.getSimpleName();
+
     private Cursor mCursor;
     private long mStartId;
 
@@ -40,6 +44,9 @@ public class ArticleDetailActivity extends AppCompatActivity
     private MyPagerAdapter mPagerAdapter;
     private View mUpButtonContainer;
     private View mUpButton;
+
+    // loading indicator to let user know article details are loading
+    private ProgressBar loadingIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +108,10 @@ public class ArticleDetailActivity extends AppCompatActivity
                 }
             });
         }
+
+        loadingIndicator = findViewById(R.id.pb_detail_loading);
+        // show the loading indicator
+        loadingIndicator.setVisibility(View.VISIBLE);
 
         if (savedInstanceState == null) {
             if (getIntent() != null && getIntent().getData() != null) {

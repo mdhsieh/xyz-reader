@@ -19,21 +19,11 @@
                 android:layout_height="wrap_content"
                 android:background="@color/photo_placeholder">
                 <!--suppress AndroidLintContentDescription -->
-                <!--<ImageView
-                    android:id="@+id/photo"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                     />-->
                 <ImageView
                     android:id="@+id/photo"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/detail_card_top_margin"
                     android:scaleType="centerCrop" />
-
-                <!--<View
-                    android:layout_width="match_parent"
-                    android:layout_height="112dp"
-                    android:background="@drawable/photo_background_protection" />-->
 
             </FrameLayout>
 
@@ -97,18 +87,7 @@
         </FrameLayout>
     </com.example.xyzreader.ui.ObservableScrollView>
 
-    <!--<ImageButton android:id="@+id/share_fab"
-        android:stateListAnimator="@anim/fab_state_list_anim"
-        android:background="@drawable/add_fab_background"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:src="@drawable/ic_share"
-        android:elevation="@dimen/fab_elevation"
-        android:contentDescription="@string/action_share" />-->
-
+    <!--using Material Design FAB-->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/share_fab"
         app:fabSize="normal"

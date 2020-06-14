@@ -16,12 +16,9 @@
 -->
 
 <resources>
-
-    <!--<style name="XYZReaderTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>-->
+    <!--Theme.MaterialComponents.Light.NoActionBar extends from Theme.AppCompat.Light.NoActionBar-->
+    <!--Theme.MaterialComponents.Light.NoActionBar is required to use Material Design components,
+    ex. FAB-->
     <style name="XYZReaderTheme" parent="@style/Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

@@ -109,7 +109,6 @@
         android:elevation="@dimen/fab_elevation"
         android:contentDescription="@string/action_share" />-->
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/share_fab"
         app:fabSize="normal"

@@ -1,11 +1,14 @@
 package com.example.xyzreader.ui;
 
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.format.DateUtils;
@@ -17,6 +20,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.loader.app.LoaderManager;
@@ -63,6 +67,10 @@ public class ArticleListActivity extends AppCompatActivity implements
     // loading indicator to let user know article list is loading
     private ProgressBar loadingIndicator;
 
+    // Activity used by RecyclerView's ViewHolder to get the ArticleListActivity
+    // in transition animation
+    private Activity activity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +99,9 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         //make loading indicator primary color
         //DrawableCompat.setTint(loadingIndicator.getIndeterminateDrawable(), getResources().getColor(R.color.colorPrimary));
+
+        // get the current Activity
+        activity = this;
 
         if (savedInstanceState == null) {
             refresh();
@@ -164,15 +175,29 @@ public class ArticleListActivity extends AppCompatActivity implements
             View view = getLayoutInflater().inflate(R.layout.list_item_article, parent, false);
             final ViewHolder vh = new ViewHolder(view);
             view.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void onClick(View view) {
                     // start a transition animation
                     // the Transition is the default AutoTransition
-                    ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
-                    TransitionManager.beginDelayedTransition(root);
+                    //ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
+                    //ViewGroup root = (ViewGroup) findViewById(R.id.swipe_refresh_layout);
+                    //TransitionManager.beginDelayedTransition(root);
 
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
+                    Log.d(TAG, "activity is: " + activity);
+
+                    View cardView = vh.itemView.findViewById(R.id.card_view);
+                    // create an options object that defines the transition
+                    ActivityOptions options = ActivityOptions
+                            .makeSceneTransitionAnimation(activity, cardView, "image");
+
+                    /*startActivity(new Intent(Intent.ACTION_VIEW,
+                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));*/
+
+                    // start the activity with transition
+                    Intent intent = new Intent(Intent.ACTION_VIEW,
+                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
+                    startActivity(intent, options.toBundle());
                 }
             });
             return vh;

@@ -181,7 +181,6 @@ public class ArticleListActivity extends AppCompatActivity implements
                     // start a transition animation
                     // the Transition is the default AutoTransition
                     //ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
-                    //ViewGroup root = (ViewGroup) findViewById(R.id.swipe_refresh_layout);
                     //TransitionManager.beginDelayedTransition(root);
 
                     Log.d(TAG, "activity is: " + activity);

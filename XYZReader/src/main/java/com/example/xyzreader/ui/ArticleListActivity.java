@@ -1,8 +1,6 @@
 package com.example.xyzreader.ui;
 
 
-import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -65,10 +63,6 @@ public class ArticleListActivity extends AppCompatActivity implements
     // loading indicator to let user know article list is loading
     private ProgressBar loadingIndicator;
 
-    // Activity used by RecyclerView's ViewHolder to get the ArticleListActivity
-    // in transition animation
-    private Activity activity;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,9 +88,6 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         // show the loading indicator
         loadingIndicator.setVisibility(View.VISIBLE);
-
-        // get the current Activity
-        activity = this;
 
         if (savedInstanceState == null) {
             refresh();
@@ -174,20 +165,8 @@ public class ArticleListActivity extends AppCompatActivity implements
                 @Override
                 public void onClick(View view) {
 
-                    Log.d(TAG, "activity is: " + activity);
-
-                    View cardView = vh.itemView.findViewById(R.id.card_view);
-                    // create an options object that defines the transition
-                    ActivityOptions options = ActivityOptions
-                            .makeSceneTransitionAnimation(activity, cardView, "image");
-
-                    /*startActivity(new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));*/
-
-                    // start the activity with transition
-                    Intent intent = new Intent(Intent.ACTION_VIEW,
-                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition())));
-                    startActivity(intent, options.toBundle());
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            ItemsContract.Items.buildItemUri(getItemId(vh.getAdapterPosition()))));
 
                 }
             });

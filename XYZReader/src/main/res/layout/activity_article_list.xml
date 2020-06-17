@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="112dp"
             android:background="@color/colorPrimary"
-            android:elevation="8dp">
+            android:elevation="@dimen/app_bar_layout_elevation">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"

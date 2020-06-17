@@ -1,6 +1,5 @@
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="4dp"
@@ -9,8 +8,7 @@
     android:layout_marginBottom="4dp"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?selectableItemBackground"
-    android:transitionName="image">
+    android:foreground="?selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,8 +18,8 @@
         <!--suppress AndroidLintContentDescription -->
         <com.example.xyzreader.ui.DynamicHeightNetworkImageView
             android:id="@+id/thumbnail"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             android:background="@color/photo_placeholder" />
 
